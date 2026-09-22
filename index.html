@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NEPA Guidance for the SAFMC</title>
+<style>
+  :root {
+    --bg: #0a1a2a;
+    --bg-alt: #0f2438;
+    --ink: #e8eef5;
+    --ink-soft: #b8c8d8;
+    --ink-muted: #7b8fa3;
+    --teal: #4fb3a9;
+    --teal-bright: #6dd0c5;
+    --gold: #d4a84b;
+    --rule: #1f3a52;
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+  body { overflow-x: hidden; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; animation: none !important; }
+  }
+  a:focus, button:focus { outline: 3px solid var(--teal-bright); outline-offset: 3px; }
+  a:focus:not(:focus-visible) { outline: none; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+
+  /* SLIDE LAYOUT */
+  .slide {
+    min-height: 100vh;
+    padding: 80px 8vw 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    background-size: cover;
+    background-position: center;
+  }
+  .slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,26,42,0.78) 0%, rgba(10,26,42,0.88) 50%, rgba(10,26,42,0.82) 100%);
+    z-index: 0;
+  }
+  .slide > * { position: relative; z-index: 1; }
+  #s1  { background-image: url('safmc-photos/IMG_9118.jpeg'); }
+  #s2  { background-image: url('safmc-photos/Fishing_at_dusk,_NPSphoto,_G.Gardner_(9257929080).jpg'); }
+  #s3  { background-image: url('safmc-photos/Charter_boats_heading_out_for_the_Key_West_Marlin_Tournament_(8534274546).jpg'); }
+  #s4  { background-image: url('safmc-photos/Outer_Banks_Scenic_Byway_-_Harkers_Island_Fishermen_and_Harbor_-_NARA_-_7720869.jpg'); }
+  #s5  { background-image: url('safmc-photos/550544_fwri-fs-30166241398_06fdfdd42c_k_hero_1200x800.jpg'); }
+  #s6  { background-image: url('safmc-photos/Allens-Cobia-009.jpg'); }
+  #s7  { background-image: url('safmc-photos/black-grouper-up-close.avif'); }
+  #s8  { background-image: url('safmc-photos/Outer_Banks_Scenic_Byway_-_The_Gambler_out_of_Hatteras,_NC,_at_Hatteras_Inlet_-_NARA_-_7720866.jpg'); }
+  #s9  { background-image: url('safmc-photos/Charter_boat_heading_out_for_the_Key_West_Marlin_Tournament_(8534266498).jpg'); }
+  #s10 { background-image: url('safmc-photos/IMG_1994.webp'); }
+  #s11 { background-image: url('safmc-photos/florida-keys-fishing-rods-mobile.jpg'); }
+  .slide-num {
+    position: absolute;
+    top: 32px;
+    right: 8vw;
+    left: auto;
+    font-family: var(--sans);
+    font-size: 15px;
+    letter-spacing: 0.18em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    z-index: 5;
+  }
+  .title-slide .slide-num,
+  .closing .slide-num { text-align: right; }
+  .slide-tag {
+    font-family: var(--sans);
+    font-size: 17px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-bottom: 22px;
+    font-weight: 700;
+  }
+  h1, h2, h3 { font-family: var(--serif); font-weight: normal; }
+  h1 {
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+  h2 {
+    font-size: clamp(32px, 4vw, 46px);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+  h3 {
+    font-size: 26px;
+    margin: 30px 0 14px;
+    color: var(--teal-bright);
+  }
+  .lede {
+    font-size: clamp(24px, 2.4vw, 30px);
+    color: var(--gold);
+    font-style: italic;
+    margin-bottom: 38px;
+    max-width: 60ch;
+    line-height: 1.5;
+  }
+  p { margin-bottom: 18px; max-width: 70ch; color: var(--ink-soft); font-size: 22px; text-wrap: pretty; }
+  p strong { color: var(--ink); font-weight: normal; font-style: italic; }
+  ul, ol { padding-left: 1.3em; margin: 10px 0 18px; max-width: 70ch; }
+  li { margin-bottom: 14px; color: var(--ink-soft); font-size: 22px; line-height: 1.55; text-wrap: pretty; }
+  h1, h2, h3, .lede, .callout, .tagline, .promise, .brand-mini { text-wrap: balance; }
+  li strong { color: var(--teal-bright); font-weight: normal; font-style: italic; }
+  .rule {
+    width: 60px;
+    height: 2px;
+    background: var(--teal);
+    margin: 0 0 28px;
+  }
+  .rule-center { margin: 0 auto 28px; }
+
+  /* TITLE SLIDE */
+  .title-slide {
+    text-align: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .title-slide .hero-bg {
+    position: absolute; inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.28;
+    z-index: 0;
+    filter: contrast(1.05);
+  }
+  .title-slide .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 0%, rgba(10,26,42,0.85) 75%, var(--bg) 100%);
+    z-index: 1;
+  }
+  .title-slide > *:not(.hero-bg):not(.slide-num) { position: relative; z-index: 2; }
+  .title-slide > .slide-num { position: absolute; z-index: 5; }
+
+  /* HERO IMAGE BANNER (other slides) */
+  .slide:has(.hero-banner) { padding-top: 240px; }
+  .hero-banner {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: clamp(420px, 60vh, 640px);
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .hero-banner::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      rgba(10,26,42,0.45) 0%,
+      rgba(10,26,42,0.20) 25%,
+      rgba(10,26,42,0.55) 55%,
+      rgba(10,26,42,0.92) 85%,
+      var(--bg) 100%);
+  }
+  .slide:nth-child(even) .hero-banner::after {
+    background: linear-gradient(180deg,
+      rgba(15,36,56,0.45) 0%,
+      rgba(15,36,56,0.20) 25%,
+      rgba(15,36,56,0.55) 55%,
+      rgba(15,36,56,0.92) 85%,
+      var(--bg-alt) 100%);
+  }
+  .slide:has(.hero-banner) > *:not(.hero-banner):not(.slide-num) { position: relative; z-index: 1; }
+  .slide:has(.hero-banner) > .slide-num { position: absolute; z-index: 5; }
+
+  /* GLOSSARY */
+  abbr[title] {
+    text-decoration: none;
+    border-bottom: 1px dotted var(--teal);
+    cursor: help;
+  }
+  abbr[title]:hover { color: var(--teal-bright); border-bottom-color: var(--teal-bright); }
+
+  /* PHOTO CREDIT */
+  .photo-credit {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+    margin-top: 20px;
+    opacity: 0.8;
+  }
+  .title-slide .brand {
+    font-family: var(--serif);
+    font-size: clamp(42px, 6vw, 72px);
+    letter-spacing: 0.02em;
+    margin-bottom: 18px;
+    line-height: 1.1;
+  }
+  .title-slide .tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(20px, 2.2vw, 28px);
+    color: var(--teal-bright);
+    margin-bottom: 50px;
+    max-width: none;
+  }
+  .founders {
+    font-family: var(--sans);
+    font-size: 18px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    line-height: 2.1;
+  }
+  .founders span { color: var(--teal-bright); }
+  .location {
+    font-family: var(--sans);
+    font-size: 16px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 24px;
+  }
+
+  /* STAT BLOCKS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 56px 48px;
+    margin: 32px 0;
+    max-width: 1100px;
+  }
+  .stat { padding-right: 16px; }
+  .stat .num {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5vw, 60px);
+    color: var(--teal-bright);
+    line-height: 1;
+    display: block;
+    white-space: nowrap;
+  }
+  .stat .label {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    margin-top: 12px;
+    line-height: 1.4;
+  }
+
+  /* TWO COLUMN */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 24px;
+  }
+  @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-family: var(--sans);
+    font-size: 18px;
+  }
+  th, td {
+    padding: 18px 20px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  th {
+    font-family: var(--sans);
+    font-size: 15px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    font-weight: 700;
+    border-bottom: 2px solid var(--teal);
+  }
+  td:first-child { color: var(--ink); font-style: italic; font-family: var(--serif); font-size: 20px; white-space: nowrap; }
+
+  /* THEORY-OF-CHANGE FLOW */
+  .toc-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px 18px;
+    margin: 20px 0 36px;
+    max-width: 1100px;
+  }
+  .toc-stage {
+    font-family: var(--sans);
+    font-size: 16px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal-bright);
+    font-weight: 700;
+    padding: 12px 20px;
+    border: 1px solid var(--teal);
+    border-radius: 4px;
+    background: rgba(79, 179, 169, 0.08);
+    white-space: nowrap;
+  }
+  .toc-stage--impact {
+    color: var(--gold);
+    border-color: var(--gold);
+    background: rgba(212, 168, 75, 0.10);
+  }
+  .toc-arrow {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--ink-soft);
+    opacity: 0.7;
+  }
+
+  /* DECISION TREE */
+  .decision-tree {
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.5;
+    margin: 20px 0;
+    max-width: 800px;
+  }
+  .dt-node {
+    border: 1px solid var(--teal);
+    border-radius: 6px;
+    padding: 16px 22px;
+    margin: 14px 0;
+    background: rgba(79, 179, 169, 0.06);
+    color: var(--ink);
+  }
+  .dt-node.dt-question {
+    border-color: var(--teal-bright);
+    background: rgba(79, 179, 169, 0.12);
+    font-style: italic;
+  }
+  .dt-node.dt-result {
+    border-color: var(--gold);
+    background: rgba(212, 168, 75, 0.10);
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .dt-branch {
+    padding-left: 32px;
+    border-left: 2px solid var(--rule);
+    margin-left: 18px;
+  }
+  .dt-label {
+    font-size: 14px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin: 8px 0 4px;
+    font-weight: 700;
+  }
+
+  /* CALLOUT */
+  .callout {
+    border-left: 3px solid var(--teal);
+    padding: 4px 22px;
+    margin: 30px 0;
+    color: var(--ink);
+    font-style: italic;
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.45;
+    max-width: 65ch;
+  }
+
+  /* CLOSING */
+  .closing { text-align: center; align-items: center; }
+  .closing .brand-mini {
+    font-size: clamp(48px, 7vw, 80px);
+    letter-spacing: 0.04em;
+    margin-bottom: 18px;
+  }
+  .closing .promise {
+    font-style: italic;
+    color: var(--teal-bright);
+    font-size: clamp(20px, 2.4vw, 28px);
+    margin-bottom: 60px;
+    max-width: 40ch;
+  }
+  .contacts {
+    font-family: var(--sans);
+    font-size: 19px;
+    line-height: 2.1;
+    color: var(--ink-soft);
+  }
+  .contacts span { color: var(--teal); }
+
+  /* FOOTNOTE */
+  .footnote {
+    font-family: var(--sans);
+    font-size: 16px;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--rule);
+    padding-top: 20px;
+    margin-top: 32px;
+    max-width: 70ch;
+    font-style: italic;
+    line-height: 1.6;
+    text-wrap: pretty;
+  }
+
+  /* NAV DOTS */
+  .nav-dots {
+    position: fixed;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+  }
+  .nav-dots a {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--ink-soft);
+    opacity: 0.35;
+    transition: all 0.25s ease-out;
+    display: block;
+    border: 1px solid transparent;
+    position: relative;
+  }
+  .nav-dots a:hover, .nav-dots a:focus { opacity: 1; transform: scale(1.4); background: var(--teal-bright); }
+  .nav-dots a:focus { outline: 2px solid var(--teal-bright); outline-offset: 4px; }
+  .nav-dots a.active {
+    opacity: 1;
+    background: var(--teal-bright);
+    transform: scale(1.6);
+    box-shadow: 0 0 0 4px rgba(109, 208, 197, 0.18);
+  }
+  .nav-dots a.visited {
+    opacity: 0.7;
+    background: var(--teal);
+  }
+
+  /* PRINT */
+  @page { size: letter landscape; margin: 0.3in; }
+  @media print {
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    html, body { background: var(--bg) !important; }
+    body { font-size: 9pt; line-height: 1.35; }
+    .slide {
+      min-height: 0 !important;
+      height: 7.7in !important;
+      max-height: 7.7in !important;
+      padding: 24pt 32pt !important;
+      page-break-after: always !important;
+      page-break-inside: avoid !important;
+      break-inside: avoid !important;
+      overflow: hidden !important;
+      display: block !important;
+      box-sizing: border-box !important;
+    }
+    .slide:last-of-type { page-break-after: auto !important; }
+    .slide:has(.hero-banner) { padding-top: 130pt !important; }
+    .hero-banner {
+      position: absolute !important;
+      top: 0; left: 0; right: 0;
+      height: 130pt !important;
+    }
+    .hero-banner::after { height: 130pt !important; }
+    .title-slide { padding: 50pt 40pt !important; height: 7.7in !important; max-height: 7.7in !important; }
+    .title-slide .hero-bg { opacity: 0.18 !important; }
+    .nav-dots { display: none !important; }
+    h1 { font-size: 22pt !important; line-height: 1.1 !important; margin-bottom: 6pt !important; max-width: 100% !important; }
+    h2 { font-size: 16pt !important; line-height: 1.15 !important; margin-bottom: 6pt !important; }
+    h3 { font-size: 11pt !important; margin: 10pt 0 4pt !important; }
+    .lede { font-size: 11pt !important; margin-bottom: 10pt !important; max-width: 100% !important; line-height: 1.35 !important; }
+    p { font-size: 9pt !important; line-height: 1.4 !important; margin-bottom: 5pt !important; max-width: 100% !important; }
+    li { font-size: 9pt !important; line-height: 1.35 !important; margin-bottom: 4pt !important; }
+    ul, ol { margin: 4pt 0 8pt !important; max-width: 100% !important; }
+    .slide-tag { font-size: 7.5pt !important; margin-bottom: 8pt !important; }
+    .slide-num { font-size: 7.5pt !important; top: 10pt !important; right: 24pt !important; }
+    .rule { margin-bottom: 10pt !important; height: 1.5pt !important; }
+    .stats { gap: 8pt 18pt !important; margin: 8pt 0 !important; max-width: 100% !important; grid-template-columns: repeat(auto-fit, minmax(120pt, 1fr)) !important; }
+    .stat { padding-right: 0 !important; }
+    .stat .num { font-size: 22pt !important; line-height: 1 !important; }
+    .stat .label { font-size: 7.5pt !important; margin-top: 4pt !important; line-height: 1.25 !important; }
+    table { font-size: 8.5pt !important; margin: 6pt 0 !important; }
+    table, tr, td, th { page-break-inside: avoid !important; break-inside: avoid !important; }
+    th, td { padding: 5pt 8pt !important; line-height: 1.3 !important; }
+    th { font-size: 7.5pt !important; }
+    td:first-child { font-size: 9pt !important; }
+    .callout { font-size: 10pt !important; margin: 8pt 0 !important; padding: 3pt 12pt !important; line-height: 1.35 !important; }
+    .footnote { font-size: 7.5pt !important; margin-top: 8pt !important; padding-top: 5pt !important; line-height: 1.35 !important; }
+    .photo-credit { font-size: 6pt !important; margin-top: 6pt !important; opacity: 0.6 !important; }
+    .toc-flow { gap: 4pt 6pt !important; margin: 6pt 0 10pt !important; }
+    .toc-stage { font-size: 7pt !important; padding: 4pt 8pt !important; letter-spacing: 0.08em !important; }
+    .toc-arrow { font-size: 12pt !important; }
+    .two-col { gap: 16pt !important; margin-top: 10pt !important; }
+    .title-slide .brand { font-size: 28pt !important; line-height: 1.1 !important; margin-bottom: 10pt !important; }
+    .title-slide .tagline { font-size: 13pt !important; margin-bottom: 18pt !important; max-width: 100% !important; }
+    .founders { font-size: 10pt !important; line-height: 1.75 !important; }
+    .location { font-size: 8pt !important; margin-top: 12pt !important; }
+    .closing .brand-mini { font-size: 48pt !important; line-height: 1 !important; margin-bottom: 14pt !important; }
+    .closing .promise { font-size: 13pt !important; margin-bottom: 22pt !important; max-width: 100% !important; }
+    .contacts { font-size: 10pt !important; line-height: 1.85 !important; }
+    .decision-tree { font-size: 8pt !important; margin: 6pt 0 !important; }
+    .dt-node { padding: 6pt 10pt !important; margin: 4pt 0 !important; font-size: 8pt !important; }
+    .dt-branch { padding-left: 16pt !important; margin-left: 8pt !important; }
+    .dt-label { font-size: 6.5pt !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav-dots" aria-label="Slide navigation">
+  <a href="#s1" aria-label="Slide 1: Title"><span class="sr-only">Title</span></a>
+  <a href="#s2" aria-label="Slide 2: The Challenge"><span class="sr-only">The Challenge</span></a>
+  <a href="#s3" aria-label="Slide 3: Executive Summary"><span class="sr-only">Executive Summary</span></a>
+  <a href="#s4" aria-label="Slide 4: Recommendation 1"><span class="sr-only">Recommendation 1</span></a>
+  <a href="#s5" aria-label="Slide 5: Decision Tree"><span class="sr-only">Decision Tree</span></a>
+  <a href="#s6" aria-label="Slide 6: Recommendation 2"><span class="sr-only">Recommendation 2</span></a>
+  <a href="#s7" aria-label="Slide 7: Phased Approach"><span class="sr-only">Phased Approach</span></a>
+  <a href="#s8" aria-label="Slide 8: Recommendation 3"><span class="sr-only">Recommendation 3</span></a>
+  <a href="#s9" aria-label="Slide 9: Case Studies"><span class="sr-only">Case Studies</span></a>
+  <a href="#s10" aria-label="Slide 10: Path Forward"><span class="sr-only">Path Forward</span></a>
+  <a href="#s11" aria-label="Slide 11: Appendix Highlights"><span class="sr-only">Appendix Highlights</span></a>
+</nav>
+
+<!-- SLIDE 1 -- TITLE -->
+<section id="s1" class="slide title-slide">
+  <div class="slide-num">01 / 11</div>
+  <div class="brand">NEPA Guidance for the SAFMC</div>
+  <div class="tagline">Strategic Recommendations for Streamlined Environmental&nbsp;Review</div>
+  <p style="color: var(--gold); font-size: 20px; max-width: 56ch; margin: 0 auto 50px; text-wrap: balance;">
+    Improving NEPA Efficiency at the South Atlantic Fishery Management Council
+  </p>
+  <div class="founders">
+    <span>Purcie Bennett-Nickerson</span> &nbsp;Bennett Nickerson Environmental Consulting<br />
+    <span>Aaron Kornbluth</span> &nbsp;akorn environmental consulting<br />
+    <span>Steve Poland</span> &nbsp;Cynoscion Environmental Consulting
+  </div>
+  <div class="location">September 2026</div>
+</section>
+
+<!-- SLIDE 2 -- THE CHALLENGE -->
+<section id="s2" class="slide">
+  <div class="slide-num">02 / 11</div>
+  <div class="slide-tag">The Challenge</div>
+  <h1>Why NEPA efficiency matters for the&nbsp;SAFMC</h1>
+  <p class="lede">Fishery management actions are delayed by uncertainty over NEPA requirements, document complexity, and staff&nbsp;burden.</p>
+  <div class="rule"></div>
+  <div class="stats">
+    <div class="stat">
+      <span class="num">12--18 mo</span>
+      <span class="label">Typical timeline for an amendment with full EA</span>
+    </div>
+    <div class="stat">
+      <span class="num">3--5 yr</span>
+      <span class="label">Potential duration when an EIS is triggered</span>
+    </div>
+    <div class="stat">
+      <span class="num">Limited</span>
+      <span class="label">Council staff capacity for parallel NEPA workstreams</span>
+    </div>
+  </div>
+  <ul style="margin-top: 28px;">
+    <li><strong>Timeline pressures</strong> -- management actions lose relevance when NEPA review drags on for years</li>
+    <li><strong>Document complexity</strong> -- unclear thresholds for when an EA vs. EIS is needed cause delays and rework</li>
+    <li><strong>Staff burden</strong> -- each action currently requires near-duplicative baseline data collection</li>
+    <li><strong>Underutilized efficiency tools</strong> -- tiering and NAPPs are authorized by NOAA but rarely used by councils, leaving significant time savings on the&nbsp;table</li>
+    <li><strong>Cross-council coordination gaps</strong> -- shared stocks managed by multiple councils face duplicative NEPA processes and inconsistent timelines due to limited coordination&nbsp;mechanisms</li>
+  </ul>
+</section>
+
+<!-- SLIDE 3 -- EXECUTIVE SUMMARY -->
+<section id="s3" class="slide">
+  <div class="slide-num">03 / 11</div>
+  <div class="slide-tag">Executive Summary</div>
+  <h1>Three strategic recommendations</h1>
+  <p class="lede">A practical framework for reducing NEPA timelines while maintaining environmental review&nbsp;quality.</p>
+  <div class="rule"></div>
+  <div class="stats">
+    <div class="stat">
+      <span class="num">1</span>
+      <span class="label">Establish clear criteria for NEPA document types and management action categories</span>
+    </div>
+    <div class="stat">
+      <span class="num">2</span>
+      <span class="label">Front-load scoping and baseline data to enable adaptive management</span>
+    </div>
+    <div class="stat">
+      <span class="num">3</span>
+      <span class="label">Improve cross-council coordination protocols for shared stocks</span>
+    </div>
+  </div>
+  <div class="callout" style="margin-top: 40px;">
+    Together, these recommendations create an integrated strategy that reduces duplicative analysis, establishes predictable timelines, and positions the SAFMC as a leader in efficient NEPA&nbsp;compliance.
+  </div>
+</section>
+
+<!-- SLIDE 4 -- RECOMMENDATION 1 -->
+<section id="s4" class="slide">
+  <div class="slide-num">04 / 11</div>
+  <div class="slide-tag">Recommendation 1</div>
+  <h1>Clear Criteria for NEPA Document Types</h1>
+  <p class="lede" style="color: var(--gold);">Define when an EA, EIS, or Categorical Exclusion applies -- and adopt Supplemental Information Reports as standard&nbsp;practice.</p>
+  <div class="rule"></div>
+  <div class="two-col">
+    <div>
+      <h3>EA vs. EIS Determination</h3>
+      <ul>
+        <li><strong>Categorical Exclusion (CE)</strong> -- routine, minor actions with no significant impact (e.g., minor regulatory adjustments within established frameworks)</li>
+        <li><strong>Environmental Assessment (EA)</strong> -- standard amendments where impacts are expected to be non-significant but require documentation</li>
+        <li><strong>Environmental Impact Statement (EIS)</strong> -- major actions with potentially significant environmental impacts, new fishery management plans, or highly controversial actions</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Key Process Improvements</h3>
+      <ul>
+        <li><strong>Supplemental Information Reports (SIRs)</strong> -- adopt as standard practice for minor modifications to existing actions, avoiding full EA duplication</li>
+        <li><strong>Framework vs. Amendment clarity</strong> -- define which actions can proceed under framework provisions vs. requiring full plan amendments</li>
+        <li><strong>Tiering framework</strong> -- tier site-specific actions from broader programmatic analyses to avoid repeating baseline assessments</li>
+        <li><strong>Structured timelines with data cutoffs</strong> -- establish firm deadlines for data inclusion to prevent perpetual document revision</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5 -- DECISION TREE -->
+<section id="s5" class="slide">
+  <div class="slide-num">05 / 11</div>
+  <div class="slide-tag">Recommendation 1 -- Decision Framework</div>
+  <h1>NEPA Document Type Decision&nbsp;Tree</h1>
+  <p class="lede">A structured approach to determining the appropriate level of environmental&nbsp;review.</p>
+  <div class="rule"></div>
+  <div class="decision-tree">
+    <div class="dt-node dt-question">Is this a new Fishery Management Plan (FMP) or a major revision to an existing FMP?</div>
+    <div class="dt-branch">
+      <div class="dt-label">Yes</div>
+      <div class="dt-node dt-result">Prepare an EIS</div>
+      <div class="dt-label">No -- continue</div>
+      <div class="dt-node dt-question">Does the action fall within parameters already analyzed in an existing EA or EIS?</div>
+      <div class="dt-branch">
+        <div class="dt-label">Yes</div>
+        <div class="dt-node dt-question">Are conditions substantially the same as previously analyzed?</div>
+        <div class="dt-branch">
+          <div class="dt-label">Yes</div>
+          <div class="dt-node dt-result">Use a Supplemental Information Report (SIR) -- no new NEPA document needed</div>
+          <div class="dt-label">No -- changed conditions</div>
+          <div class="dt-node dt-result">Prepare a supplemental EA or tiered EA from existing programmatic analysis</div>
+        </div>
+        <div class="dt-label">No -- new ground</div>
+        <div class="dt-node dt-question">Could the action have significant environmental impact or is it highly controversial?</div>
+        <div class="dt-branch">
+          <div class="dt-label">Yes</div>
+          <div class="dt-node dt-result">Prepare an EIS</div>
+          <div class="dt-label">No</div>
+          <div class="dt-node dt-result">Prepare an EA (with Finding of No Significant Impact)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="footnote">This decision tree is a simplified guide. Actual determinations should consider CEQ regulations, NOAA NEPA procedures, and agency-specific&nbsp;guidance.</p>
+</section>
+
+<!-- SLIDE 6 -- RECOMMENDATION 2 -->
+<section id="s6" class="slide">
+  <div class="slide-num">06 / 11</div>
+  <div class="slide-tag">Recommendation 2</div>
+  <h1>Front-Load Scoping and Adaptive&nbsp;Management</h1>
+  <p class="lede">NEPA Advanced Planning Procedures (NAPPs) build a reusable analytical foundation that streamlines every subsequent&nbsp;action.</p>
+  <div class="rule"></div>
+  <h3>The NAPP Framework</h3>
+  <p><strong style="color: var(--teal-bright);">NEPA Advanced Planning Procedure (NAPP):</strong> A regulatory framework authorized by NOAA Procedural Directive 09-103 that enables agencies to front-load environmental analysis -- conducting comprehensive scoping and baseline data collection <strong>before</strong> individual management actions are proposed, so that subsequent actions can reference existing analysis rather than rebuilding it from&nbsp;scratch.</p>
+  <p style="margin-top: 16px;"><strong style="color: var(--teal-bright);">Supplemental Information Report (SIR):</strong> A brief analytical document, authorized by NOAA Procedural Directive 09-103, that incorporates new information -- such as an updated stock assessment or revised catch data -- into an existing NEPA analysis. When the new information does not result in significant impacts not previously analyzed, the SIR documents that finding and no new EA or EIS is&nbsp;required.</p>
+  <p style="margin-top: 16px;">Together, NAPPs and SIRs create a system where the initial investment in comprehensive analysis pays dividends across every subsequent management&nbsp;action:</p>
+  <ul>
+    <li><strong>Strategic EA/EIS design</strong> -- draft environmental analyses broad enough to cover foreseeable management actions within a fishery</li>
+    <li><strong>Standing baseline data</strong> -- maintain current environmental, socioeconomic, and fishery data in a continuously updated repository</li>
+    <li><strong>Tiering structure</strong> -- design programmatic documents so that subsequent actions can tier from them, referencing existing analysis rather than repeating it</li>
+    <li><strong>Supplemental Information Reports (SIRs)</strong> -- when new information falls within the scope of a previous analysis, an SIR documents why no new EA or EIS is needed, avoiding months of duplicative&nbsp;review</li>
+    <li><strong>Tiering from programmatic documents</strong> -- subsequent site-specific or action-specific reviews reference and build on the programmatic analysis rather than starting from scratch, dramatically reducing document length and preparation&nbsp;time</li>
+    <li><strong>Integration with adaptive management cycles</strong> -- align NEPA documents with the Council's existing stock assessment and specification-setting&nbsp;cycles</li>
+  </ul>
+
+  <h3>Legal Authority for NAPPs and SIRs</h3>
+  <p style="color: var(--gold); font-style: italic; margin-bottom: 18px;">PD 09-103 provides specific procedures for both NAPPs and SIRs, confirms tiering authority, and provides detailed guidance on their application -- giving the SAFMC a clear, legally grounded pathway to implement every recommendation in this&nbsp;analysis.</p>
+  <p>NAPPs and SIRs are not aspirational -- they are <strong>explicitly authorized and encouraged</strong> by existing NOAA regulatory&nbsp;directives:</p>
+  <ul>
+    <li><strong>NOAA Fisheries Procedural Directive 09-103 (July 2025)</strong> -- explicitly authorizes NAPPs and SIRs, including tiering and adaptive management approaches for fishery management actions. Recognizes that fishery management requires adaptive responses to changing conditions and that NAPPs and SIRs enable efficient&nbsp;compliance.</li>
+    <li><strong>PD 30-132 (2013)</strong> -- originally formalized NAPPs and SIRs as fisheries-specific mechanisms. Together, they have been an established part of NOAA's NEPA compliance toolkit for over a&nbsp;decade.</li>
+    <li><strong>NAO 216-6A</strong> -- NOAA's overarching NEPA procedures, which provide the framework within which NAPPs and SIRs&nbsp;operate.</li>
+    <li><strong>NOAA Section 304(f) Procedural Directive (2023)</strong> -- reinforces coordination requirements that NAPPs and SIRs help&nbsp;satisfy.</li>
+  </ul>
+</section>
+
+<!-- SLIDE 7 -- PHASED APPROACH -->
+<section id="s7" class="slide">
+  <div class="slide-num">07 / 11</div>
+  <div class="slide-tag">Recommendation 2 -- Phased Strategy</div>
+  <h1>Near-Term and Long-Term&nbsp;Approaches</h1>
+  <p class="lede">Two complementary pathways toward fully adaptive NEPA&nbsp;management.</p>
+  <div class="rule"></div>
+  <div class="two-col">
+    <div>
+      <h3>Approach A: Near-Term</h3>
+      <p style="color: var(--gold); font-style: italic; margin-bottom: 12px;">Strategic EA/EIS with SIRs, Tiering, and Adaptive Management</p>
+      <ul>
+        <li>Design foundational EAs for major fishery complexes broad enough to support tiering for subsequent management&nbsp;actions</li>
+        <li>Subsequent framework actions and specification adjustments tier from the baseline analysis, using SIRs to document that impacts remain within the analyzed&nbsp;range</li>
+        <li>Incorporate adaptive management frameworks directly into baseline documents, pre-analyzing a range of management&nbsp;responses</li>
+        <li>Align document refresh cycles with stock assessment schedules for maximum&nbsp;efficiency</li>
+        <li>Establish clear criteria for when an action can use an SIR vs. requiring a new or supplemental&nbsp;EA</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Approach B: Long-Term</h3>
+      <p style="color: var(--gold); font-style: italic; margin-bottom: 12px;">Programmatic EIS for Comprehensive Adaptive Management</p>
+      <ul>
+        <li>For major fishery complexes, a Programmatic EIS provides the most comprehensive analytical foundation -- rare and intensive to produce, but the long-term payoff is&nbsp;substantial</li>
+        <li>All subsequent framework actions and specification adjustments tier from the PEIS, using SIRs to document that impacts remain within the analyzed&nbsp;range</li>
+        <li>Incorporate adaptive management frameworks directly into the PEIS, pre-analyzing a full range of management responses across foreseeable&nbsp;conditions</li>
+        <li>Align PEIS refresh cycles with stock assessment schedules for maximum&nbsp;efficiency</li>
+        <li>Precedent: the Alaska Groundfish PEIS has served as the tiering foundation for the North Pacific Council for over two&nbsp;decades</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 8 -- RECOMMENDATION 3 -->
+<section id="s8" class="slide">
+  <div class="slide-num">08 / 11</div>
+  <div class="slide-tag">Recommendation 3</div>
+  <h1>Cross-Council Coordination for Shared&nbsp;Stocks</h1>
+  <p class="lede" style="color: var(--gold);">When two or more councils manage the same stock, NEPA duplication multiplies. Formal coordination protocols can cut that&nbsp;burden.</p>
+  <div class="rule"></div>
+  <div class="two-col">
+    <div>
+      <h3>Formal Coordination Agreements</h3>
+      <ul>
+        <li><strong>Joint NEPA protocols</strong> -- establish memoranda of understanding (MOUs) that designate a lead council for NEPA compliance on shared-stock actions</li>
+        <li><strong>Coordinated scientific processes</strong> -- align stock assessment timelines and data sources to reduce duplicative analysis across councils</li>
+        <li><strong>Shared baseline data</strong> -- maintain joint environmental baseline documents that both councils can reference</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Strategic Use of Framework Provisions</h3>
+      <ul>
+        <li><strong>Compatible framework actions</strong> -- harmonize framework provisions across council FMPs so that routine adjustments do not require separate NEPA documents from each council</li>
+        <li><strong>Tiering across councils</strong> -- allow one council's programmatic analysis to serve as the foundation for the other council's tiered NEPA review</li>
+        <li><strong>Joint public comment processes</strong> -- coordinate scoping meetings and comment periods to reduce stakeholder fatigue and improve public participation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 9 -- CASE STUDIES -->
+<section id="s9" class="slide">
+  <div class="slide-num">09 / 11</div>
+  <div class="slide-tag">Recommendation 3 -- Case Studies</div>
+  <h1>Shared-Stock Coordination in&nbsp;Practice</h1>
+  <p class="lede" style="color: var(--gold);">Two cases that illustrate both the challenges and opportunities for cross-council NEPA&nbsp;coordination.</p>
+  <div class="rule"></div>
+  <div class="two-col">
+    <div>
+      <h3>Blueline Tilefish: SAFMC -- MAFMC</h3>
+      <ul>
+        <li><strong>Background</strong> -- stock managed jointly by the South Atlantic and Mid-Atlantic councils with separate FMPs</li>
+        <li><strong>Challenge</strong> -- each council has historically prepared independent NEPA documents for overlapping management actions</li>
+        <li><strong>What's working</strong> -- the joint SSC working group model succeeded for blueline tilefish, bringing scientific leadership from both councils together to coordinate assessments, share data, and develop unified ABC&nbsp;recommendations</li>
+        <li><strong>Shared analytical foundation</strong> -- this joint SSC approach gets all the science together and helps make management decisions from a shared basis rather than duplicative parallel&nbsp;processes</li>
+        <li><strong>Next step</strong> -- formalize the joint SSC model with standing working groups, standard operating procedures, terms of reference, and MOUs so it doesn't depend on individual relationships but becomes institutional&nbsp;practice</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Coastal Migratory Pelagics: SAFMC -- Gulf Council</h3>
+      <p style="margin-bottom: 12px;">One of the oldest collaborative regional fishery frameworks in the U.S. (established 1983), jointly managing king mackerel, Spanish mackerel, and cobia across thousands of miles of&nbsp;coastline.</p>
+      <ul>
+        <li><strong>What's working -- clear division of responsibility:</strong> SAFMC manages Atlantic migratory groups, GMFMC manages Gulf groups, and MAFMC embeds liaisons in the Mackerel Cobia Committee for northern&nbsp;coverage</li>
+        <li><strong>Streamlined permitting:</strong> a single federal commercial permit covers king mackerel across both the Gulf and South Atlantic EEZ, eliminating the burden of council-specific&nbsp;permits</li>
+        <li><strong>Cooperative science:</strong> unified stock assessments through SEDAR prevent conflicting data and ensure quotas reflect biological boundaries, not political&nbsp;lines</li>
+        <li><strong>Coordinated upgrades:</strong> both councils implement electronic reporting and FMP updates in parallel (e.g., Amendment 33) so one region's gaps don't compromise the&nbsp;other</li>
+        <li><strong>Parallel public engagement:</strong> synchronized port meetings and stakeholder outreach feed cohesive information into joint&nbsp;amendments</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 10 -- PATH FORWARD -->
+<section id="s10" class="slide">
+  <div class="slide-num">10 / 11</div>
+  <div class="slide-tag">Path Forward</div>
+  <h1>Phased Implementation and Measuring&nbsp;Success</h1>
+  <p class="lede">An integrated strategy that builds momentum through early wins and scales toward long-term structural&nbsp;change.</p>
+  <div class="rule"></div>
+  <table>
+    <thead>
+      <tr>
+        <th>Phase</th>
+        <th>Actions</th>
+        <th>Timeline</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="color: var(--gold); font-weight: 600;">Phase 1</td>
+        <td>Adopt NEPA document-type criteria and SIR procedures; establish data cutoff policies; begin cross-council MOU negotiations</td>
+        <td>0--6 months</td>
+      </tr>
+      <tr>
+        <td style="color: var(--gold); font-weight: 600;">Phase 2</td>
+        <td>Pilot strategic EA design for one fishery complex; launch NAPP baseline data collection; finalize first cross-council NEPA coordination agreement</td>
+        <td>6--18 months</td>
+      </tr>
+      <tr>
+        <td style="color: var(--gold); font-weight: 600;">Phase 3</td>
+        <td>Expand strategic EA/SIR model across fishery complexes; implement tiering across council actions; formalize cross-council coordination MOUs</td>
+        <td>18--36 months</td>
+      </tr>
+      <tr>
+        <td style="color: var(--gold); font-weight: 600;">Phase 4</td>
+        <td>Full adaptive management integration; cross-council tiering operational; SIR-based framework actions as standard practice</td>
+        <td>3--5 years</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Measuring Success</h3>
+  <ul>
+    <li>Reduction in average time from action initiation to NEPA completion</li>
+    <li>Number of actions processed via SIR vs. full EA</li>
+    <li>Decrease in duplicative baseline analysis across related actions</li>
+    <li>Successful cross-council NEPA coordination on shared-stock management&nbsp;measures</li>
+  </ul>
+</section>
+
+<!-- SLIDE 11 -- APPENDIX HIGHLIGHTS / CLOSING -->
+<section id="s11" class="slide closing">
+  <div class="slide-num">11 / 11</div>
+  <div class="brand-mini">NEPA Guidance for the&nbsp;SAFMC</div>
+  <div class="promise">Streamlined environmental review. Stronger fisheries&nbsp;management.</div>
+  <div class="rule rule-center"></div>
+  <div style="text-align: left; max-width: 700px; margin: 0 auto 40px;">
+    <h3 style="text-align: center;">Appendices</h3>
+    <ul style="list-style: none; padding: 0;">
+      <li style="margin-bottom: 12px;"><strong style="color: var(--gold);">Appendix B:</strong> Decision Tools and Flowcharts</li>
+      <li style="margin-bottom: 12px;"><strong style="color: var(--gold);">Appendix C:</strong> Template Language for Adaptive Management and Tiering Framework in EA/EIS</li>
+      <li style="margin-bottom: 12px;"><strong style="color: var(--gold);">Appendix D:</strong> Draft Memoranda of Understanding for Cross-Council Coordination</li>
+    </ul>
+  </div>
+  <div class="contacts">
+    <span>Purcie Bennett-Nickerson</span> -- Bennett Nickerson Environmental Consulting<br />
+    <span>Aaron Kornbluth</span> -- akorn environmental consulting<br />
+    <span>Steve Poland</span> -- Cynoscion Environmental Consulting
+  </div>
+  <div class="location">September 2026</div>
+</section>
+
+<script>
+/* NAV DOT HIGHLIGHTING */
+(function () {
+  const dots = document.querySelectorAll('.nav-dots a');
+  const slides = document.querySelectorAll('.slide');
+  if (!dots.length || !slides.length) return;
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const idx = [...slides].indexOf(e.target);
+      if (idx < 0) return;
+      const dot = dots[idx];
+      if (!dot) return;
+      if (e.isIntersecting) {
+        dots.forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+        dot.classList.add('visited');
+      }
+    });
+  }, { threshold: 0.35 });
+
+  slides.forEach(s => io.observe(s));
+})();
+</script>
+</body>
+</html>
